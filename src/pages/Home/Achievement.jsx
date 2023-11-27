@@ -13,27 +13,27 @@ const Achievement = () => {
                     </h1>
                     <Description description="Various versions have evolved over the years, sometimes by accident," />
                 </div>
-                <div className='flex flex-col md:flex-row'>
-                    <div className='flex justify-between gap-8'>
+                <div className='flex flex-col md:flex-row items-center'>
+                    <div className='flex justify-between gap-4 md:gap-8'>
                         <div className='flex items-center gap-2'>
                             <button className='text-[#0075FD] bg-[#F0F7FF] p-3 rounded-md text-3xl'><FaUsers></FaUsers></button>
                             <div>
-                                <h2 className='text-3xl font-semibold'>1000+</h2>
-                                <p className='text-lg text-[#8A8A8A]'>Users</p>
+                                <h2 className='text-xl md:text-3xl font-semibold'>1000+</h2>
+                                <p className='md:text-lg text-[#8A8A8A]'>Users</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-2'>
                             <button className='text-[#ED4459] bg-[#FFEEF0] p-3 rounded-md text-3xl'><FaGraduationCap /></button>
                             <div>
-                                <h2 className='text-3xl font-semibold'>400+</h2>
-                                <p className='text-lg text-[#8A8A8A]'>Students</p>
+                                <h2 className='text-xl md:text-3xl font-semibold'>400+</h2>
+                                <p className='md:text-lg text-[#8A8A8A]'>Students</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-2'>
                             <button className='text-[#FFC27A] bg-[#FFFAF5] p-3 rounded-md text-3xl'><FaVideo /></button>
                             <div>
-                                <h2 className='text-3xl font-semibold'>50+</h2>
-                                <p className='text-lg text-[#8A8A8A]'>Classes</p>
+                                <h2 className='text-xl md:text-3xl font-semibold'>50+</h2>
+                                <p className='md:text-lg text-[#8A8A8A]'>Classes</p>
                             </div>
                         </div>
                     </div>

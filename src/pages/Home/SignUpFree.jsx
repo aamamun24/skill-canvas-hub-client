@@ -6,9 +6,9 @@ const SignUpFree = () => {
     return (
         <div className='bg-[#FDF8EE] py-16'>
             <Container>
-            <div className='flex flex-col md:flex-row gap-6 items-center'>                    
+            <div className='flex flex-col-reverse md:flex-row gap-6 items-center'>                    
                     <div>
-                        <h2 className='text-5xl font-semibold'>Join Worlds largest learning platform today</h2>
+                        <h2 className='text-2xl md:text-5xl font-semibold'>Join Worlds largest learning platform today</h2>
                         <p className='text-[#8A8A8A] my-4'>Start learning by registering for free</p>
                         <Button text="Sign up for free" />
                     </div>
