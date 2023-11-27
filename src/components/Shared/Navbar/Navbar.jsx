@@ -1,7 +1,7 @@
 import { useState } from "react";
 import logo from '../../../../public/logo.png';
 import Container from "../Container/Container";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { CiLogin } from "react-icons/ci";
 
@@ -48,8 +48,8 @@ const Navbar = () => {
 
                         {/* button */}
                         <div className="order-last flex gap-6">
-                            <button className="bg-white font-medium uppercase px-6 py-3 text-[#4D2C5E] rounded-full flex items-center gap-2 border border-[#4D2C5E]" >Log In <CiLogin /> </button>
-                            <button className="bg-[#4D2C5E] font-medium uppercase px-6 py-3 text-white rounded-full hidden lg:block">Sign Up</button>
+                            <Link to='login' className="bg-white font-medium uppercase px-4 py-2 text-[#4D2C5E] rounded-full flex items-center gap-2 border border-[#4D2C5E]" >Log In <CiLogin /> </Link>
+                            <Link to='signup' className="bg-[#4D2C5E] font-medium uppercase px-4 py-2 text-white rounded-full hidden lg:block">Sign Up</Link>
                         </div>
                     </div>
                 </Container>
