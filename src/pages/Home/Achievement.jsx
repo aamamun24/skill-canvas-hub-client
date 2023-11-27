@@ -1,6 +1,6 @@
 import Description from '../../components/Shared/Description';
 import Container from '../../components/Shared/Container/Container';
-import { FaGraduationCap, FaUsers, FaVideo, FaVideoSlash } from 'react-icons/fa';
+import { FaGraduationCap, FaUsers, FaVideo } from 'react-icons/fa';
 import achievement from '../../assets/achievement.png';
 
 const Achievement = () => {
@@ -23,14 +23,14 @@ const Achievement = () => {
                             </div>
                         </div>
                         <div className='flex items-center gap-2'>
-                            <button className='text-[#ED4459] bg-[#FFEEF0] p-3 rounded-md text-3xl'><FaGraduationCap/></button>
+                            <button className='text-[#ED4459] bg-[#FFEEF0] p-3 rounded-md text-3xl'><FaGraduationCap /></button>
                             <div>
                                 <h2 className='text-3xl font-semibold'>400+</h2>
                                 <p className='text-lg text-[#8A8A8A]'>Students</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-2'>
-                            <button className='text-[#FFC27A] bg-[#FFFAF5] p-3 rounded-md text-3xl'><FaVideo/></button>
+                            <button className='text-[#FFC27A] bg-[#FFFAF5] p-3 rounded-md text-3xl'><FaVideo /></button>
                             <div>
                                 <h2 className='text-3xl font-semibold'>50+</h2>
                                 <p className='text-lg text-[#8A8A8A]'>Classes</p>
