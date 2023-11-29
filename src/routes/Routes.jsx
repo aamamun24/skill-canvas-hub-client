@@ -3,6 +3,13 @@ import Home from "../pages/Home/Home";
 import Main from '../layouts/Main';
 import SignUp from "../pages/SignUp/SignUp";
 import Login from "../pages/Login/Login";
+import AllClasses from "../pages/AllClasses/AllClasses";
+import ClassDetails from "../pages/ClassDetails/ClassDetails";
+import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../layouts/Dashboard";
+import Payment from "../pages/Payment/Payment";
+import ApplyTeacher from "../pages/ApplyTeacher/ApplyTeacher";
+import MyEnroll from "../pages/Dashboard/MyEnroll/MyEnroll";
 
 const router = createBrowserRouter([
     {
@@ -12,6 +19,22 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />
+            },
+            {
+                path: "/all-classes",
+                element: <AllClasses />
+            },
+            {
+                path: "/class/:id",
+                element: <PrivateRoute><ClassDetails /></PrivateRoute>
+            },
+            {
+                path: "/payment/:id",
+                element: <PrivateRoute><Payment /></PrivateRoute>
+            },
+            {
+                path: "/apply-teacher",
+                element: <PrivateRoute><ApplyTeacher /></PrivateRoute>
             }
         ]
     },
@@ -22,6 +45,16 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />
+    },
+    {
+        path: "/dashboard",
+        element: <Dashboard />,
+        children: [
+            {
+                path: 'my-enroll',
+                element: <MyEnroll/>
+            }
+        ]
     }
 ]);
 

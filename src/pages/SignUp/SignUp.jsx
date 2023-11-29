@@ -1,51 +1,51 @@
 import { useForm } from 'react-hook-form';
-// import useAuth from '../../hooks/useAuth';
-import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-// import useAxiosPublic from '../../hooks/useAxiosPublic';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
+import useAuth from '../../hooks/useAuth';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { Helmet } from 'react-helmet-async/lib';
 
 const SignUp = () => {
-    // const { createUser, updateUserProfile } = useAuth()
+    const { createUser, updateUserProfile } = useAuth()
     const navigate = useNavigate()
-    // const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic()
 
     const { register, handleSubmit, reset, formState: { errors }, } = useForm()
     const onSubmit = (data) => {
-        // createUser(data.email, data.password)
-        //     .then(result => {
-        //         console.log(result);
-        //         updateUserProfile(data.name, data.photoURL)
-        //             .then(() => {
-        //                 // create user entry in database
-        //                 const userInfo = {
-        //                     name: data.name,
-        //                     email: data.email
-        //                 }
+        createUser(data.email, data.password)
+            .then(result => {
+                console.log(result);
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        // create user entry in database
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
 
-        //                 axiosPublic.post('/users', userInfo)
-        //                     .then(res => {
-        //                         if (res.data.insertedId) {
-        //                             reset()
-        //                             toast.success('User Created Successfully')
-        //                             navigate('/')
-        //                         }
-        //                     })
-        //             })
-        //             .catch((err) => console.log(err))
-        //     })
-        //     .catch(err => {
-        //         console.log(err.message);
-        //     })
+                        // axiosPublic.post('/users', userInfo)
+                        //     .then(res => {
+                        //         if (res.data.insertedId) {
+                        //             reset()
+                        //             toast.success('User Created Successfully')
+                        //             navigate('/')
+                        //         }
+                        //     })
+                    })
+                    .catch((err) => console.log(err))
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
     }
 
     return (
         <div className="h-screen my-2 flex flex-col items-center">
-            {/* <Helmet>
-                <title>Bistro Boss | Sign Up</title>
-            </Helmet> */}
             <div className="bg-gray-100 p-8 rounded shadow-md w-1/3 md:w-96">
+                <Helmet>
+                    <title>Skill Canvas Hub | Sign Up</title>
+                </Helmet>
                 <h2 className="text-3xl text-center font-semibold mb-6">Sign Up</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-4">
@@ -79,7 +79,7 @@ const SignUp = () => {
                     <p className="text-center text-gray-600 text-sm my-4">
                         Already have an account? <Link to="/login" className="text-blue-500">Login</Link>
                     </p>
-                    <SocialLogin/>
+                    <SocialLogin />
                 </form>
             </div>
         </div>

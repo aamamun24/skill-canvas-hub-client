@@ -1,10 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
 
-    // const { signIn } = useAuth()
+    const { signIn } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -15,19 +16,18 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
 
-        // signIn(email, password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user);
-        //         toast.success('Successfully Login');
-        //         navigate(from, { replace: true })
-        //     })
-        //     .catch(err => {
-        //         console.log(err.message);
-        //         toast.error(err.message);
-        //     })
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('Successfully Login');
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                console.log(err.message);
+                toast.error(err.message);
+            })
     }
 
     return (
