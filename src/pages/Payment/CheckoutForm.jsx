@@ -79,12 +79,11 @@ const CheckoutForm = () => {
                 const payment = {
                     email: user.email,
                     transactionId: paymentIntent.id,
-                    status: 'pending'
+                    classId: singleClass?._id
                 }
 
                 const res = await axiosSecure.post('/payments', payment)
                 // refetch()
-                // if (res?.data?.paymentResult?.insertedId) {
                 if (res?.data?.insertedId) {
                     toast.success('Payment completed successfully')
                 }

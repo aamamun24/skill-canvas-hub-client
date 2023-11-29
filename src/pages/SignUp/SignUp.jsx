@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
 import useAuth from '../../hooks/useAuth';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { Helmet } from 'react-helmet-async/lib';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const SignUp = () => {
     const { createUser, updateUserProfile } = useAuth()
@@ -21,17 +21,18 @@ const SignUp = () => {
                         // create user entry in database
                         const userInfo = {
                             name: data.name,
-                            email: data.email
+                            email: data.email,
+                            role: 'user'
                         }
 
-                        // axiosPublic.post('/users', userInfo)
-                        //     .then(res => {
-                        //         if (res.data.insertedId) {
-                        //             reset()
-                        //             toast.success('User Created Successfully')
-                        //             navigate('/')
-                        //         }
-                        //     })
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    reset()
+                                    toast.success('User Created Successfully')
+                                    navigate('/')
+                                }
+                            })
                     })
                     .catch((err) => console.log(err))
             })
@@ -42,7 +43,7 @@ const SignUp = () => {
 
     return (
         <div className="h-screen my-2 flex flex-col items-center">
-            <div className="bg-gray-100 p-8 rounded shadow-md w-1/3 md:w-96">
+            <div className="bg-gray-100 p-8 rounded shadow-md w-11/12 md:w-2/3 lg:w-1/3">
                 <Helmet>
                     <title>Skill Canvas Hub | Sign Up</title>
                 </Helmet>

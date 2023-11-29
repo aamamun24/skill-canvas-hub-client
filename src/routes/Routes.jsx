@@ -10,6 +10,7 @@ import Dashboard from "../layouts/Dashboard";
 import Payment from "../pages/Payment/Payment";
 import ApplyTeacher from "../pages/ApplyTeacher/ApplyTeacher";
 import MyEnroll from "../pages/Dashboard/MyEnroll/MyEnroll";
+import MyEnrollDetails from "../pages/Dashboard/MyEnroll/MyEnrollDetails";
 
 const router = createBrowserRouter([
     {
@@ -48,11 +49,15 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
             {
                 path: 'my-enroll',
-                element: <MyEnroll/>
+                element: <PrivateRoute><MyEnroll /></PrivateRoute>
+            },
+            {
+                path: 'my-enroll/:id',
+                element: <PrivateRoute><MyEnrollDetails /> </PrivateRoute>
             }
         ]
     }
