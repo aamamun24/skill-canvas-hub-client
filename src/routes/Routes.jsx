@@ -11,6 +11,10 @@ import Payment from "../pages/Payment/Payment";
 import ApplyTeacher from "../pages/ApplyTeacher/ApplyTeacher";
 import MyEnroll from "../pages/Dashboard/MyEnroll/MyEnroll";
 import MyEnrollDetails from "../pages/Dashboard/MyEnroll/MyEnrollDetails";
+import TeacherRequest from "../pages/Dashboard/TeacherRequest/TeacherRequest";
+import Users from "../pages/Dashboard/Users/Users";
+import AddClass from "../pages/Dashboard/AddClass/AddClass";
+import MyClass from "../pages/Dashboard/MyClass/MyClass";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +55,7 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
+            // user or student routes
             {
                 path: 'my-enroll',
                 element: <PrivateRoute><MyEnroll /></PrivateRoute>
@@ -58,6 +63,28 @@ const router = createBrowserRouter([
             {
                 path: 'my-enroll/:id',
                 element: <PrivateRoute><MyEnrollDetails /> </PrivateRoute>
+            },
+            // admin routes TODO <AdminRoute/>
+            {
+                path: 'teacher-request',
+                element: <TeacherRequest />
+            },
+            {
+                path: 'users',
+                element: <Users />
+            },
+            {
+                path: 'all-classes',
+                element: <AllClasses />
+            },
+            // teacher routes TODO <TeacherRoute/>
+            {
+                path: 'add-class',
+                element: <AddClass />
+            },
+            {
+                path: 'my-class',
+                element: <MyClass />
             }
         ]
     }

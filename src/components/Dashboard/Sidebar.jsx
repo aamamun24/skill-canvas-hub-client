@@ -4,15 +4,12 @@ import { NavLink } from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
 import Logo from '../Shared/Logo'
 import { FaSignOutAlt } from 'react-icons/fa'
-
-// import useRole from '../../../hooks/useRole'
-
-const isAdmin = true //Todo
+import useRole from '../../hooks/useRole'
 
 const Sidebar = () => {
     const { logOut } = useAuth()
     const [isActive, setActive] = useState(false)
-    //   const [role] = useRole()
+    const [role] = useRole()
 
     // Sidebar Responsive Handler
     const handleToggle = () => {
@@ -45,16 +42,41 @@ const Sidebar = () => {
                     {/* Nav Items */}
                     <div className='flex flex-col justify-between flex-1 mt-6 ml-2' >
                         <ul>
-                            {isAdmin ?
+                            {
+                                role?.role === 'user' &&
+                                <li>
+                                    <NavLink to="/dashboard/my-enroll" className={({ isActive }) => isActive ? "text-[#FD661F] text-lg font-bold" : "text-[#252641] text-lg font-medium"
+                                    }>My Enroll Class</NavLink>
+                                </li>
+                            }
+                            {
+                                role?.role === 'admin' &&
                                 <>
                                     <li>
-                                        <NavLink to="/dashboard/my-enroll" className={({ isActive }) => isActive ? "text-[#FD661F] text-lg font-bold" : "text-[#252641] text-lg font-medium"
-                                        }>My Enroll Class</NavLink>
+                                        <NavLink to="/dashboard/teacher-request" className={({ isActive }) => isActive ? "text-[#FD661F] text-lg font-bold" : "text-[#252641] text-lg font-medium"
+                                        }>Teacher Request</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/users" className={({ isActive }) => isActive ? "text-[#FD661F] text-lg font-bold" : "text-[#252641] text-lg font-medium"
+                                        }>Users</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/all-classes" className={({ isActive }) => isActive ? "text-[#FD661F] text-lg font-bold" : "text-[#252641] text-lg font-medium"
+                                        }>All Classes</NavLink>
                                     </li>
                                 </>
-                                :
+                            }
+                            {
+                                role?.role === 'teacher' &&
                                 <>
-
+                                    <li>
+                                        <NavLink to="/dashboard/add-class" className={({ isActive }) => isActive ? "text-[#FD661F] text-lg font-bold" : "text-[#252641] text-lg font-medium"
+                                        }>Add class</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/my-class" className={({ isActive }) => isActive ? "text-[#FD661F] text-lg font-bold" : "text-[#252641] text-lg font-medium"
+                                        }>My class</NavLink>
+                                    </li>
                                 </>
                             }
                         </ul>

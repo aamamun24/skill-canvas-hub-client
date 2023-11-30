@@ -1,24 +1,22 @@
 import { useForm } from "react-hook-form";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import Button from "../../components/Button/Button";
-import useRequest from "../../hooks/useRequest";
 import Container from "../../components/Shared/Container/Container";
 import SectionTitle from "../../components/Shared/SectionTitle";
+import useRole from "../../hooks/useRole";
 
 const ApplyTeacher = () => {
     const { user } = useAuth()
     const { register, handleSubmit, reset } = useForm()
     const axiosSecure = useAxiosSecure()
-
-    const [requestRes, refetch] = useRequest()
+    const [role] = useRole()
 
     const onSubmit = async (data) => {
-        console.log(data)
         if (data) {
             const request = {
+                userId: role._id,
                 name: user.displayName,
                 image: user.photoURL,
                 experience: data.experience,
