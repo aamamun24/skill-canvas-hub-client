@@ -63,7 +63,7 @@ const Users = () => {
                                 <th>
                                     {index + 1}
                                 </th>
-                                <td>{user?.image}</td>
+                                <td><img src={user?.image} className="w-12 h-12 object-cover" alt="" /></td>
                                 <td>{user?.name}</td>
                                 <td>{user?.email}</td>
                                 <td>

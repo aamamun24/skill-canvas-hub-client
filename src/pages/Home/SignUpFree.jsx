@@ -1,6 +1,7 @@
 import Container from "../../components/Shared/Container/Container";
 import join from '../../assets/join.png';
 import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
 
 const SignUpFree = () => {
     return (
@@ -10,7 +11,7 @@ const SignUpFree = () => {
                     <div>
                         <h2 className='text-2xl md:text-5xl font-semibold'>Join Worlds largest learning platform today</h2>
                         <p className='text-[#8A8A8A] my-4'>Start learning by registering for free</p>
-                        <Button text="Sign up for free" />
+                        <Link to='/signup'><Button text="Sign up for free" /></Link>
                     </div>
                     <div>
                         <img className='rounded-md' src={join} alt="" />

@@ -18,6 +18,8 @@ import MyClass from "../pages/Dashboard/MyClass/MyClass";
 import AllClass from "../pages/Dashboard/AllClass/AllClass";
 import ClassProgress from "../pages/Dashboard/AllClass/ClassProgress";
 import Profile from "../pages/Dashboard/Profile/Profile";
+import AdminRoute from "./AdminRoute";
+import TeacherRoute from "./TeacherRoute";
 
 const router = createBrowserRouter([
     {
@@ -58,10 +60,6 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
-            {
-                path: 'profile',
-                element: <Profile />
-            },
             // user or student routes
             {
                 path: 'my-enroll',
@@ -71,31 +69,35 @@ const router = createBrowserRouter([
                 path: 'my-enroll/:id',
                 element: <PrivateRoute><MyEnrollDetails /> </PrivateRoute>
             },
-            // admin routes TODO <AdminRoute/>
+            {
+                path: 'profile',
+                element: <PrivateRoute><Profile /></PrivateRoute>
+            },
+            // admin routes
             {
                 path: 'teacher-request',
-                element: <TeacherRequest />
+                element: <AdminRoute><TeacherRequest /></AdminRoute>
             },
             {
                 path: 'users',
-                element: <Users />
+                element: <AdminRoute><Users /></AdminRoute>
             },
             {
                 path: 'all-class',
-                element: <AllClass />
+                element: <AdminRoute><AllClass /></AdminRoute>
             },
             {
                 path: 'class/:id',
-                element: <ClassProgress />
+                element: <AdminRoute><ClassProgress /></AdminRoute>
             },
-            // teacher routes TODO <TeacherRoute/>
+            // teacher routes
             {
                 path: 'add-class',
-                element: <AddClass />
+                element: <TeacherRoute><AddClass /></TeacherRoute>
             },
             {
                 path: 'my-class',
-                element: <MyClass />
+                element: <TeacherRoute><MyClass /></TeacherRoute>
             }
         ]
     }

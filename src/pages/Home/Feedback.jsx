@@ -6,9 +6,22 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Review from '../../components/Shared/Review';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 
 const Feedback = () => {
+
+    const axiosPublic = useAxiosPublic()
+
+    const { data: feedback = [] } = useQuery({
+        queryKey: ['feedback'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/feedback')
+            return res.data;
+        }
+    })
+
     return (
         <div className='bg-[#FDF8EE] py-16'>
             <Container>
@@ -38,10 +51,16 @@ const Feedback = () => {
                     modules={[Pagination]}
                     className="mySwiper"
                 >
-                    <SwiperSlide><Review /></SwiperSlide>
-                    <SwiperSlide><Review /></SwiperSlide>
-                    <SwiperSlide><Review /></SwiperSlide>
-                    <SwiperSlide><Review /></SwiperSlide>
+                    {
+                        feedback.map(item => <SwiperSlide key={item._id}>
+                            <Review 
+                            image={item?.image}
+                            name={item?.name}
+                            title={item?.title}
+                            description={item?.description}
+                            />
+                        </SwiperSlide>)
+                    }
                 </Swiper>
             </Container>
         </div>

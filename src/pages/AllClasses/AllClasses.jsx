@@ -1,11 +1,11 @@
 import ClassCard from "../../components/Card/ClassCard";
 import Container from "../../components/Shared/Container/Container";
 import SectionTitle from "../../components/Shared/SectionTitle";
-import useClass from "../../hooks/useClass";
 import classBanner from '../../assets/class-banner.png';
+import useAcceptedClass from "../../hooks/useAcceptedClass";
 
 const AllClasses = () => {
-    const [classes] = useClass()
+    const [classes] = useAcceptedClass()
     return (
         <div>
             <div className='bg-[#6176F7]'>

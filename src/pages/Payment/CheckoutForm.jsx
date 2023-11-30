@@ -2,9 +2,9 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import useClass from "../../hooks/useClass";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAcceptedClass from "../../hooks/useAcceptedClass";
 
 const CheckoutForm = () => {
     const stripe = useStripe()
@@ -16,7 +16,7 @@ const CheckoutForm = () => {
     const { user } = useAuth();
     const navigate = useNavigate()
 
-    const [classes] = useClass()
+    const [classes] = useAcceptedClass()
     const { id } = useParams()
     const singleClass = classes.find(item => item._id === id)
     const classPrice = parseFloat(singleClass?.price)
@@ -83,9 +83,14 @@ const CheckoutForm = () => {
                 }
 
                 const res = await axiosSecure.post('/payments', payment)
-                // refetch()
+                console.log('payment', res.data);
                 if (res?.data?.insertedId) {
-                    toast.success('Payment completed successfully')
+
+                    const res = await axiosSecure.put(`/class/${singleClass._id}/enroll`)
+                    console.log('enroll', res.data);
+                    if (res.data.modifiedCount > 0) {
+                        toast.success('Payment completed successfully')
+                    }
                 }
                 navigate('/dashboard/my-enroll')
             }
@@ -93,7 +98,7 @@ const CheckoutForm = () => {
     }
 
     return (
-        <div>
+        <div className="bg-gray-200 p-10 rounded-md">
             <form onSubmit={handleSubmit}>
                 <CardElement
                     options={{
@@ -111,7 +116,7 @@ const CheckoutForm = () => {
                         },
                     }}
                 />
-                <button className="btn btn-outline btn-secondary my-3" type="submit" disabled={!stripe || !clientSecret}>
+                <button className="btn btn-secondary my-3" type="submit" disabled={!stripe || !clientSecret}>
                     Payment
                 </button>
                 <p className="text-red-500">{error}</p>

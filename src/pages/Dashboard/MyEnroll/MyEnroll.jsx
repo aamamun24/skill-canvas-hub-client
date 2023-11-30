@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useClass from "../../../hooks/useClass";
 import { Link } from "react-router-dom";
 import Button from "../../../components/Button/Button";
+import useAcceptedClass from "../../../hooks/useAcceptedClass";
 
 const MyEnroll = () => {
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
-    const [classes] = useClass()
+    const [classes] = useAcceptedClass()
 
     const { data: payments = [] } = useQuery({
         queryKey: ['payments', user?.email],

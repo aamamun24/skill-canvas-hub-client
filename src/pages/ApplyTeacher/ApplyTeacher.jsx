@@ -6,6 +6,7 @@ import Button from "../../components/Button/Button";
 import Container from "../../components/Shared/Container/Container";
 import SectionTitle from "../../components/Shared/SectionTitle";
 import useRole from "../../hooks/useRole";
+import { Link } from "react-router-dom";
 
 const ApplyTeacher = () => {
     const { user } = useAuth()
@@ -36,72 +37,80 @@ const ApplyTeacher = () => {
 
     return (
         <div className="bg-[#E9F8F3B2] pt-32 pb-16">
-            <Container>
-                <div className="p-10 bg-white rounded-md">
-                    <div className="text-center">
-                        <SectionTitle text='Apply for' colorText='Teacher' />
+            {
+                role?.role === 'admin' || role?.role === 'teacher' ?
+                    <div className="h-[70vh] flex flex-col items-center justify-center">
+                        <h2 className="text-5xl font-medium">You are {role.role}</h2>
+                        <Link to='/dashboard' className="mt-6"><Button text='Go to dashboard'/></Link>
                     </div>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div>
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input
-                                {...register('name', { required: true })}
-                                value={user?.displayName}
-                                type="text"
-                                placeholder="Name"
-                                className="input input-bordered w-full" />
-                        </div>
-
-                        <div className="flex flex-col md:flex-row gap-5">
-
-                            <div className="w-full">
-                                <label className="label">
-                                    <span className="label-text">Experience  *</span>
-                                </label>
-                                <select defaultValue="default" {...register('experience', { required: true })}
-                                    className="select select-bordered w-full">
-                                    <option disabled value="default">Select a category</option>
-                                    <option value="beginner">Beginner</option>
-                                    <option value="experienced">Experienced</option>
-                                    <option value="some-idea">Some idea</option>
-                                </select>
+                    :
+                    <Container>
+                        <div className="p-10 bg-white rounded-md">
+                            <div className="text-center">
+                                <SectionTitle text='Apply for' colorText='Teacher' />
                             </div>
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <div>
+                                    <label className="label">
+                                        <span className="label-text">Name</span>
+                                    </label>
+                                    <input
+                                        {...register('name', { required: true })}
+                                        value={user?.displayName}
+                                        type="text"
+                                        placeholder="Name"
+                                        className="input input-bordered w-full" />
+                                </div>
 
-                            <div className="w-full">
-                                <label className="label">
-                                    <span className="label-text">Category  *</span>
-                                </label>
-                                <select defaultValue="default" {...register('category', { required: true })}
-                                    className="select select-bordered w-full">
-                                    <option disabled value="default">Select a category</option>
-                                    <option value="web-development">Web Development</option>
-                                    <option value="digital-marketing">Digital Marketing</option>
-                                    <option value="e-commerce">E-commerce</option>
-                                    <option value="cybersecurity">Cybersecurity</option>
-                                    <option value="data-analytics">Data Analytics</option>
-                                </select>
-                            </div>
-                        </div>
+                                <div className="flex flex-col md:flex-row gap-5">
 
-                        <div className="w-full">
-                            <label className="label">
-                                <span className="label-text">Title *</span>
-                            </label>
-                            <input
-                                {...register('title', { required: true })}
-                                type="text"
-                                placeholder="Title"
-                                className="input input-bordered w-full" />
-                        </div>
+                                    <div className="w-full">
+                                        <label className="label">
+                                            <span className="label-text">Experience  *</span>
+                                        </label>
+                                        <select defaultValue="default" {...register('experience', { required: true })}
+                                            className="select select-bordered w-full">
+                                            <option disabled value="default">Select a category</option>
+                                            <option value="beginner">Beginner</option>
+                                            <option value="experienced">Experienced</option>
+                                            <option value="some-idea">Some idea</option>
+                                        </select>
+                                    </div>
 
-                        <div className="mt-4 flex justify-center">
-                            <Button text='submit for review' />
+                                    <div className="w-full">
+                                        <label className="label">
+                                            <span className="label-text">Category  *</span>
+                                        </label>
+                                        <select defaultValue="default" {...register('category', { required: true })}
+                                            className="select select-bordered w-full">
+                                            <option disabled value="default">Select a category</option>
+                                            <option value="web-development">Web Development</option>
+                                            <option value="digital-marketing">Digital Marketing</option>
+                                            <option value="e-commerce">E-commerce</option>
+                                            <option value="cybersecurity">Cybersecurity</option>
+                                            <option value="data-analytics">Data Analytics</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="w-full">
+                                    <label className="label">
+                                        <span className="label-text">Title *</span>
+                                    </label>
+                                    <input
+                                        {...register('title', { required: true })}
+                                        type="text"
+                                        placeholder="Title"
+                                        className="input input-bordered w-full" />
+                                </div>
+
+                                <div className="mt-4 flex justify-center">
+                                    <Button text='submit for review' />
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
-            </Container>
+                    </Container>
+            }
         </div>
     );
 };

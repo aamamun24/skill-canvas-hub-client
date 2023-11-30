@@ -1,9 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import useClass from "../../hooks/useClass";
+import useAcceptedClass from "../../hooks/useAcceptedClass";
 
 const ClassDetails = () => {
-    const [classes] = useClass()
+    const [classes] = useAcceptedClass()
     const { id } = useParams()
     const classDetails = classes.find(item => item._id === id)
 
