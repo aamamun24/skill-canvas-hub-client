@@ -1,6 +1,7 @@
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useRequest from "../../../hooks/useRequest";
 import Swal from "sweetalert2";
+import toast from 'react-hot-toast';
 
 const TeacherRequest = () => {
     const [request, refetch] = useRequest();
@@ -18,7 +19,7 @@ const TeacherRequest = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axiosSecure.put(`/users/${userId}`)
+                axiosSecure.put(`/users/${userId}/teacher`)
                     .then(res => {
                         if (res.data.modifiedCount > 0) {
 
@@ -44,19 +45,19 @@ const TeacherRequest = () => {
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     refetch()
-
+                    toast.success('Request rejected')
                 }
             })
     }
 
     return (
-        <div className=''>
+        <div>
             <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold">Total Request: {request.length}</h2>
             </div>
             <div className="overflow-x-auto mt-6">
                 <table className="table">
-                    <thead className='bg-orange-400 text-white uppercase font-semibold'>
+                    <thead className='bg-[#FD661F] text-white uppercase font-semibold'>
                         <tr>
                             <th></th>
                             <th>Image</th>

@@ -61,7 +61,7 @@ const Sidebar = () => {
                                         }>Users</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/all-classes" className={({ isActive }) => isActive ? "text-[#FD661F] text-lg font-bold" : "text-[#252641] text-lg font-medium"
+                                        <NavLink to="/dashboard/all-class" className={({ isActive }) => isActive ? "text-[#FD661F] text-lg font-bold" : "text-[#252641] text-lg font-medium"
                                         }>All Classes</NavLink>
                                     </li>
                                 </>

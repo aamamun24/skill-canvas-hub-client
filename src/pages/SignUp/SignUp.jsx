@@ -20,6 +20,7 @@ const SignUp = () => {
                     .then(() => {
                         // create user entry in database
                         const userInfo = {
+                            image: data.photoURL,
                             name: data.name,
                             email: data.email,
                             role: 'user'

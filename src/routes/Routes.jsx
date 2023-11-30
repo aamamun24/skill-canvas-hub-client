@@ -15,6 +15,9 @@ import TeacherRequest from "../pages/Dashboard/TeacherRequest/TeacherRequest";
 import Users from "../pages/Dashboard/Users/Users";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClass from "../pages/Dashboard/MyClass/MyClass";
+import AllClass from "../pages/Dashboard/AllClass/AllClass";
+import ClassProgress from "../pages/Dashboard/AllClass/ClassProgress";
+import Profile from "../pages/Dashboard/Profile/Profile";
 
 const router = createBrowserRouter([
     {
@@ -55,6 +58,10 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
+            {
+                path: 'profile',
+                element: <Profile />
+            },
             // user or student routes
             {
                 path: 'my-enroll',
@@ -74,8 +81,12 @@ const router = createBrowserRouter([
                 element: <Users />
             },
             {
-                path: 'all-classes',
-                element: <AllClasses />
+                path: 'all-class',
+                element: <AllClass />
+            },
+            {
+                path: 'class/:id',
+                element: <ClassProgress />
             },
             // teacher routes TODO <TeacherRoute/>
             {
